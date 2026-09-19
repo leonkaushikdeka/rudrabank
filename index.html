@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3a712" />
+    <meta name="description" content="Rudra Bank — a private virtual piggy bank that lives in your browser." />
+    <title>Rudra Bank — My Virtual Piggy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Rudra Bank home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>Rudra Bank</span>
+      </a>
+      <button class="icon-button" id="settingsButton" type="button" aria-label="Open settings" title="Settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.42 1.42-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56v.1h-2v-.1A1.7 1.7 0 0 0 12.35 18a1.7 1.7 0 0 0-1.88.34l-.06.06L9 16.98l.06-.06A1.7 1.7 0 0 0 9.4 15a1.7 1.7 0 0 0-1.56-1.04h-.1v-2h.1A1.7 1.7 0 0 0 9.4 10a1.7 1.7 0 0 0-.34-1.88L9 8.06l1.42-1.42.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 13.4 5.5v-.1h2v.1A1.7 1.7 0 0 0 16.44 7a1.7 1.7 0 0 0 1.88-.34l.06-.06L19.8 8l-.06.06A1.7 1.7 0 0 0 19.4 10a1.7 1.7 0 0 0 1.56 1.04h.1v2h-.1A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+      </button>
+    </header>
+
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="greeting">
+        <div>
+          <p class="eyebrow">YOUR POCKET-SIZED SAVINGS SPACE</p>
+          <h1 id="greeting">Hello, Saver!</h1>
+          <p class="hero-copy">Small coins. Big dreams. Keep adding and watch them grow.</p>
+        </div>
+        <div class="streak-pill"><span aria-hidden="true">✦</span> <strong id="entryCount">0</strong>&nbsp; saves made</div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="balance-card">
+          <div class="balance-copy">
+            <p class="card-label">INSIDE YOUR PIGGY</p>
+            <p class="balance" id="balance">₹0</p>
+            <p class="balance-caption" id="balanceCaption">Your first coin is waiting.</p>
+          </div>
+          <div class="piggy-wrap" aria-hidden="true">
+            <div class="coin coin-a">₹</div>
+            <div class="coin coin-b">₹</div>
+            <div class="piggy">
+              <div class="piggy-ear"></div>
+              <div class="piggy-body"><span class="piggy-eye"></span><span class="piggy-smile"></span></div>
+              <div class="piggy-snout">••</div>
+              <div class="piggy-leg leg-one"></div><div class="piggy-leg leg-two"></div>
+              <div class="piggy-tail"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="goal-card">
+          <div class="section-heading">
+            <div>
+              <p class="card-label">MY SAVING GOAL</p>
+              <h2 id="goalName">Dream fund</h2>
+            </div>
+            <button class="text-button" id="editGoalButton" type="button">Edit goal</button>
+          </div>
+          <div class="goal-numbers"><strong id="goalSaved">₹0 saved</strong><span id="goalTarget">of ₹10,000</span></div>
+          <div class="progress-track" role="progressbar" aria-label="Savings goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
+          <p class="goal-message" id="goalMessage">Start with any amount — every coin counts.</p>
+        </article>
+      </section>
+
+      <section class="save-card" aria-labelledby="saveHeading">
+        <div class="section-heading save-heading">
+          <div>
+            <p class="card-label">MAKE A MOVE</p>
+            <h2 id="saveHeading">Add coins to your piggy</h2>
+          </div>
+          <div class="action-switch" role="group" aria-label="Transaction type">
+            <button class="switch-option active" data-type="deposit" type="button">Save</button>
+            <button class="switch-option" data-type="withdrawal" type="button">Take out</button>
+          </div>
+        </div>
+
+        <form id="transactionForm">
+          <label class="amount-field" for="amount">
+            <span class="currency-symbol" id="currencySymbol">₹</span>
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0" autocomplete="off" required />
+          </label>
+          <div class="quick-amounts" id="quickAmounts" aria-label="Quick amounts"></div>
+          <label class="note-field" for="note">
+            <span>Note</span>
+            <input id="note" name="note" maxlength="60" placeholder="What are these coins for? (optional)" />
+          </label>
+          <button class="primary-button" id="submitButton" type="submit"><span aria-hidden="true">＋</span> Drop into piggy</button>
+        </form>
+      </section>
+
+      <section class="history-card" aria-labelledby="historyHeading">
+        <div class="section-heading">
+          <div>
+            <p class="card-label">YOUR JOURNEY</p>
+            <h2 id="historyHeading">Recent activity</h2>
+          </div>
+          <button class="text-button" id="clearHistoryButton" type="button">Clear all</button>
+        </div>
+        <div class="empty-state" id="emptyState">
+          <span class="empty-coin" aria-hidden="true">₹</span>
+          <p><strong>No coins yet</strong><br />Your savings story will appear here.</p>
+        </div>
+        <ul class="history-list" id="historyList"></ul>
+      </section>
+
+      <p class="privacy-note"><span aria-hidden="true">⌂</span> Private by design — your data stays in this browser. Export a backup from settings.</p>
+    </main>
+
+    <dialog id="goalDialog">
+      <form method="dialog" id="goalForm" class="dialog-form">
+        <div class="dialog-heading"><div><p class="card-label">A LITTLE MOTIVATION</p><h2>Set your goal</h2></div><button class="close-button" value="cancel" aria-label="Close" type="submit">×</button></div>
+        <label>Goal name<input id="goalNameInput" maxlength="35" required /></label>
+        <label>Target amount<input id="goalAmountInput" type="number" min="1" step="0.01" required /></label>
+        <button class="primary-button" value="save" type="submit">Save goal</button>
+      </form>
+    </dialog>
+
+    <dialog id="settingsDialog">
+      <form method="dialog" id="settingsForm" class="dialog-form">
+        <div class="dialog-heading"><div><p class="card-label">MAKE IT YOURS</p><h2>Settings</h2></div><button class="close-button" value="cancel" aria-label="Close" type="submit">×</button></div>
+        <label>Your name<input id="userNameInput" maxlength="25" placeholder="Saver" /></label>
+        <label>Currency<select id="currencyInput"><option value="INR">₹ — Indian Rupee</option><option value="USD">$ — US Dollar</option><option value="EUR">€ — Euro</option><option value="GBP">£ — British Pound</option><option value="JPY">¥ — Japanese Yen</option></select></label>
+        <button class="primary-button" value="save" type="submit">Save preferences</button>
+        <div class="data-tools">
+          <p><strong>Your data</strong><br /><span>Save a copy or restore it on another browser.</span></p>
+          <div><button class="secondary-button" id="exportButton" type="button">Export</button><button class="secondary-button" id="importButton" type="button">Import</button></div>
+          <input id="importFile" type="file" accept="application/json" hidden />
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
